@@ -45,5 +45,6 @@ group :development do
   gem 'spring'
   gem 'devise'
   gem 'rails_admin'
+  gem "paperclip", "~> 5.0.0.beta1"
 end
 
