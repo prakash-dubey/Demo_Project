@@ -1,56 +1,12 @@
 <div class="left-sidebar">
 	<h2>Category</h2>
-	<div class="panel-group category-products" id="accordian"><!--category-productsr-->
-		<div class="panel panel-default">
-			<% @categories.each do |category| %>
-				<div class="panel-heading">
-					<h4 class="panel-title">
-						<a data-toggle="collapse" data-parent="#accordian" href="#<%= category.name %>">
-							<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-							<%= category.name %>
-						</a>
-					</h4>
-				</div>
-				<div id="<%= category.name %>" class="panel-collapse collapse">
-					<div class="panel-body">
-						<ul>
-							<% category.subcategories.each do |subcategory| %>
-								<li><a href="#"><%= subcategory.name %></a></li>
-							<% end %>
-						</ul>
-					</div>
-				</div>
-			<% end %>
-		</div>
-
-						<%#= render 'category', category: category %>
-					<!-- <a data-toggle="collapse" data-parent="#accordian" href="#sportswear" class="">
-						<span class="badge pull-right"><i class="fa fa-plus"></i></span>
-						Sportswear
-					</a> -->
-	</div>
-<!-- 			<div id="sportswear" class="panel-collapse in" style="height: auto;">
-				<div class="panel-body">
-					<ul>
-						<li><a href="#">Nike </a></li>
-						<li><a href="#">Under Armour </a></li>
-						<li><a href="#">Adidas </a></li>
-						<li><a href="#">Puma</a></li>
-						<li><a href="#">ASICS </a></li>
-					</ul>
-				</div>
-			</div> -->
-
-
-						<!--/category-products-->
-					    <%= render 'brands' %>
-						<%= render 'price_range' %>
-						
-						<div class="shipping text-center"><!--shipping-->
-							<%= image_tag("/assets/home/shipping.jpg") %>
-						</div><!--/shipping-->
-					
-					</div>
+	<%= render 'home/category'%>
+	<%= render 'home/brands' %>
+	<%= render 'home/price_range' %>				
+	<div class="shipping text-center"><!--shipping-->
+		<%= image_tag("/assets/home/shipping.jpg") %>
+	</div><!--/shipping-->					
+</div>
 
 
 
