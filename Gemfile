@@ -47,5 +47,6 @@ group :development do
   gem 'rails_admin'
   gem "paperclip", "~> 5.0.0.beta1"
   gem "pry"
+gem 'omniauth-facebook'
 end
 

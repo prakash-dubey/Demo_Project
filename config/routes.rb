@@ -2,17 +2,22 @@ Rails.application.routes.draw do
   
 
   
-  devise_for :admins
+  devise_for :users
+  #devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
    root 'home#index'
+   get '/login', to: 'home#login'
 
    resources :categories do 
     resources :subcategories 
   end
+
+  resources :carts
+  get '/user_carts', to: 'carts#show'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

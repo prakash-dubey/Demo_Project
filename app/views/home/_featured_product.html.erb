@@ -1,26 +1,25 @@
 <div class="col-sm-4">
 	<div class="product-image-wrapper">
 		<div class="single-products">
-				<div class="productinfo text-center">
-					
+				<div class="productinfo text-center">					
 					<% if product.product_images.count > 0 %> 
 					<%= image_tag(product.product_images.first.image.url ) %>
 					<% else %>
 					<%= image_tag("home/gallery3.jpg", alt: "") %>
 					<% end %>
-
-
-
-					<%= product.price %>
-					<%= product.name %>
-
+						<ul>
+					<li><%= product.price %></li>
+					<li><%= product.name %></li>
+						</ul>
 					<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
 				</div>
 				<div class="product-overlay">
 					<div class="overlay-content">
-					<%= product.price %>
-					<%= product.name %>
-						<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
+						<ul>
+					<li><%= product.price %></li>
+					<li><%= product.name %></li>
+						</ul>
+						  <%= link_to '<i class="fa fa-shopping-cart"></i>Add to cart'.html_safe, new_cart_path(:product_id => product),:class => "btn btn-default add-to-cart" %>
 					</div>
 				</div>
 		</div>
