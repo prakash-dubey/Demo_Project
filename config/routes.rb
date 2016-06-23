@@ -18,6 +18,8 @@ Rails.application.routes.draw do
 
   resources :carts
   get '/user_carts', to: 'carts#show'
+  get '/user_carts_add', to: 'carts#add_product'
+  get '/user_carts_remove', to: 'carts#remove_product'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
