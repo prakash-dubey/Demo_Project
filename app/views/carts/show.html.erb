@@ -2,7 +2,7 @@
 		<div class="container">
 			<div class="breadcrumbs">
 				<ol class="breadcrumb">
-				  <li><a href="#">Home</a></li>
+				  <li><%= link_to "Home", root_path %></li>
 				  <li class="active">Shopping Cart</li>
 				</ol>
 			</div>
@@ -130,9 +130,9 @@
 					<div class="total_area">
 						<ul>
 							<li>Cart Sub Total <span><%= @total %></span></li>
-							<li>Eco Tax <span>$2</span></li>
+							<!-- <li>Eco Tax <span>$2</span></li> -->
 							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span>$61</span></li>
+							<li>Total <span><%= @total %></span></li>
 						</ul>
 							<a class="btn btn-default update" href="">Update</a>
 							<a class="btn btn-default check_out" href="">Check Out</a>

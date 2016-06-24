@@ -30,7 +30,7 @@ Devise.setup do |config|
   # available as additional gems.
   require 'devise/orm/active_record'
 
-  config.allow_unconfirmed_access_for = 2000.years
+  #config.allow_unconfirmed_access_for = 2000.years
 
   # ==> Configuration for any authentication mechanism
   # Configure which keys are used when authenticating a user. The default is

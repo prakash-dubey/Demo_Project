@@ -18,7 +18,6 @@
 						<% category.subcategories.each do |subcategory| %>
 							<li><%= link_to subcategory.name, category_subcategory_path(category_id: category.id, id: subcategory) %></li>
 						<% end %>
-
 					</ul>
 				</div>
 			</div>

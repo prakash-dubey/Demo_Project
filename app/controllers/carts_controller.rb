@@ -1,6 +1,6 @@
 class CartsController < ApplicationController
 
-	def show
+	def show    
     @quantities = {}
     @uniq_prods = session[:product_id].uniq
     @uniq_prods.each do |i| 
@@ -18,21 +18,27 @@ class CartsController < ApplicationController
   end
 
   def new
-    session[:product_id] << params["product_id"]
+    add_product_to_cart
     redirect_to root_path
   end
 
-  def add_product
-  	session[:product_id] << params["product_id"]  	
-    redirect_to user_carts_path
+  def add_product_to_cart
+    session[:product_id] << params["product_id"]
+    flash[:success] = 'Product was successfully added.' 
   end
+
+  def add_product
+  	add_product_to_cart
+    redirect_to user_carts_path    
+  end
+
 
   def remove_product
   	#binding.pry
   	@session = session[:product_id]
-
   	session[:product_id].delete_at( @session.index(params[:product_id] ))
-  redirect_to user_carts_path	
+    flash[:success] = 'Product was successfully removed.'
+    redirect_to user_carts_path	
   end
 
 end
