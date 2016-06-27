@@ -11,10 +11,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160624055257) do
+ActiveRecord::Schema.define(version: 20160627140455) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "addresses", force: :cascade do |t|
+    t.text     "address_1"
+    t.text     "address_2"
+    t.string   "city"
+    t.string   "country"
+    t.string   "state"
+    t.integer  "zipcode"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string   "name"
+  end
+
+  add_index "addresses", ["user_id"], name: "index_addresses_on_user_id", using: :btree
 
   create_table "admins", force: :cascade do |t|
     t.string   "email",                  default: "",    null: false
@@ -139,6 +154,24 @@ ActiveRecord::Schema.define(version: 20160624055257) do
     t.datetime "updated_at",  null: false
   end
 
+  create_table "user_orders", force: :cascade do |t|
+    t.integer  "payment_gateway_id"
+    t.decimal  "shipping_charges",    precision: 12, scale: 2
+    t.string   "status"
+    t.decimal  "total_amount",        precision: 12, scale: 2
+    t.integer  "user_id"
+    t.integer  "coupon_id"
+    t.integer  "shipping_method"
+    t.string   "transaction_id"
+    t.integer  "billing_address_id"
+    t.integer  "shipping_address_id"
+    t.datetime "created_at",                                   null: false
+    t.datetime "updated_at",                                   null: false
+  end
+
+  add_index "user_orders", ["coupon_id"], name: "index_user_orders_on_coupon_id", using: :btree
+  add_index "user_orders", ["user_id"], name: "index_user_orders_on_user_id", using: :btree
+
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
     t.string   "encrypted_password",     default: "", null: false
@@ -164,7 +197,10 @@ ActiveRecord::Schema.define(version: 20160624055257) do
   add_index "users", ["email"], name: "index_users_on_email", unique: true, using: :btree
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true, using: :btree
 
+  add_foreign_key "addresses", "users"
   add_foreign_key "product_categories", "categories"
   add_foreign_key "product_categories", "products"
   add_foreign_key "product_images", "products"
+  add_foreign_key "user_orders", "coupons"
+  add_foreign_key "user_orders", "users"
 end

@@ -2,6 +2,7 @@ Rails.application.routes.draw do
   
 
   
+
   devise_for :users
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -11,15 +12,21 @@ Rails.application.routes.draw do
   # You can have the root of your site routed with "root"
    root 'home#index'
    get '/login', to: 'home#login'
-
-   resources :categories do 
+  resources :addresses
+  
+   resources :categories do  
     resources :subcategories 
   end
 
   resources :carts
+  post'/user_carts/apply_coupon', to: 'carts#apply_coupon'
   get '/user_carts', to: 'carts#show'
   get '/user_carts_add', to: 'carts#add_product'
-  get '/user_carts_remove', to: 'carts#remove_product'
+  get '/user_carts_reduce', to: 'carts#reduce_product'
+  get '/user_carts_checkout', to: 'carts#checkout'
+  delete'/user_carts_remove', to: 'carts#remove_product'
+
+  #get '/addresses', to: 'addresses#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'

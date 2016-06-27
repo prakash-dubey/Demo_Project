@@ -23,7 +23,7 @@
 							<% @cart_products.each do |product,v|%>
 							<td class="cart_product">
 								 <%# @cart_products.each do |k,v|%>
-								<a href="">
+								<a href="#">
 									<% if product.product_images.count > 0 %> 
 									<%= image_tag(product.product_images.first.image.url ) %>
 									<% else %>
@@ -46,7 +46,7 @@
 
 									<input class="cart_quantity_input" type="text" name="quantity" value=<%= v[:quantity]%> autocomplete="off" size="2">
 									<!-- <a class="cart_quantity_down" href=""> - </a> -->
-									<%= link_to "-",user_carts_remove_path(:product_id => product), :class=>"cart_quantity_down"%>									
+									<%= link_to "-",user_carts_reduce_path(:product_id => product), :class=>"cart_quantity_down"%>									
 								</div>
 							</td>
 							<td class="cart_total">
@@ -56,89 +56,30 @@
 								<!-- <p class="cart_total_price">$59</p> -->
 							</td>
 							<td class="cart_delete">
-								<a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a>
+								<%= link_to '<i class="fa fa-times"></i>'.html_safe,user_carts_remove_path(:product_id => product), :class=>"cart_quantity_delete",
+								method: :delete,
+              data: { confirm: 'Are you sure?' } %></td>
+									
+
+								<!-- <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a> -->
 							</td>
 						</tr>						
 					</tbody>
 					<% end %>
 				</table>
-			</div>
-		</div>
-</section>
-<section id="do_action">
-		<div class="container">
-			<div class="heading">
-				<h3>What would you like to do next?</h3>
-				<p>Choose if you have a discount code or reward points you want to use or would like to estimate your delivery cost.</p>
-			</div>
-			<div class="row">
-				<div class="col-sm-6">
-					<div class="chose_area">
-						<ul class="user_option">
-							<li>
-								<input type="checkbox">
-								<label>Use Coupon Code</label>
-							</li>
-							<li>
-								<input type="checkbox">
-								<label>Use Gift Voucher</label>
-							</li>
-							<li>
-								<input type="checkbox">
-								<label>Estimate Shipping &amp; Taxes</label>
-							</li>
-						</ul>
-						<ul class="user_info">
-							<li class="single_field">
-								<label>Country:</label>
-								<select>
-									<option>United States</option>
-									<option>Bangladesh</option>
-									<option>UK</option>
-									<option>India</option>
-									<option>Pakistan</option>
-									<option>Ucrane</option>
-									<option>Canada</option>
-									<option>Dubai</option>
-								</select>
-								
-							</li>
-							<li class="single_field">
-								<label>Region / State:</label>
-								<select>
-									<option>Select</option>
-									<option>Dhaka</option>
-									<option>London</option>
-									<option>Dillih</option>
-									<option>Lahore</option>
-									<option>Alaska</option>
-									<option>Canada</option>
-									<option>Dubai</option>
-								</select>
-							
-							</li>
-							<li class="single_field zip-field">
-								<label>Zip Code:</label>
-								<input type="text">
-							</li>
-						</ul>
-						<a class="btn btn-default update" href="">Get Quotes</a>
-						<a class="btn btn-default check_out" href="">Continue</a>
-					</div>
-				</div>
-				<div class="col-sm-6">
-					<div class="total_area">
-						<ul>
-							<li>Cart Sub Total <span><%= @total %></span></li>
+			<div class="pull-right">
+		<div class="col-sm-6">
+					<!-- <div class="total_area"> -->
+						<!-- <ul> -->
+							<!-- <li>Cart Sub Total <span><%= @total %></span></li> -->
 							<!-- <li>Eco Tax <span>$2</span></li> -->
-							<li>Shipping Cost <span>Free</span></li>
-							<li>Total <span><%= @total %></span></li>
-						</ul>
-							<a class="btn btn-default update" href="">Update</a>
-							<a class="btn btn-default check_out" href="">Check Out</a>
-					</div>
-				</div>
+							<!-- <li>Shipping Cost <span>Free</span></li> -->
+							<!-- <li>Total <span><%= @total %></span></li> -->
+						<!-- </ul> -->
+							<!-- <a class="btn btn-default update" href="">Update</a> -->
+							<%= link_to "Check Out", user_carts_checkout_path, :class=>"btn btn-default check_out"%></div>
+							<!-- <a class="btn btn-default check_out" href="">Check Out</a> -->
+					<!-- </div> -->
+		</div>
 			</div>
 		</div>
-	</section>
-
