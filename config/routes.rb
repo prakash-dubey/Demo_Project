@@ -26,6 +26,11 @@ Rails.application.routes.draw do
   get '/user_carts_checkout', to: 'carts#checkout'
   delete'/user_carts_remove', to: 'carts#remove_product'
 
+
+  get "/404", :to => "errors#not_found"
+  get "/422", :to => "errors#unacceptable"
+  get "/500", :to => "errors#internal_error"
+
   #get '/addresses', to: 'addresses#index'
 
   # Example of regular route:

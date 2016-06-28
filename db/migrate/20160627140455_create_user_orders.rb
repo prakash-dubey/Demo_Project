@@ -11,6 +11,7 @@ class CreateUserOrders < ActiveRecord::Migration
       t.string :transaction_id
       t.integer :billing_address_id
       t.integer :shipping_address_id
+      
       t.timestamps null: false
     end
   end

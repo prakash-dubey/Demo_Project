@@ -49,6 +49,10 @@ class CartsController < ApplicationController
   end
 
   def checkout
+    calculate_total
+  end
+
+  def calculate_total
     @quantities = {}
     @uniq_prods = session[:product_id].uniq
     @uniq_prods.each do |i| 
@@ -56,14 +60,27 @@ class CartsController < ApplicationController
 
     end
     @cart_products = {}
-    @quantities.each do |k,v|
-
-      product=Product.find(k)
-      @cart_products[product]={"quantity": v,"total_price": v * product.price}
-    end
     @total=0
+    @quantities.each do |k,v|
+      product=Product.find(k)
+      total_price = v * product.price
+      @cart_products[product]={"quantity": v,"total_price": total_price}
+      @total += total_price
+    end
   end
+
   def apply_coupon
+    calculate_total
+    #binding.pry
+     if Coupon.exists?(:code => params[:coupon])
+      @coupon = Coupon.find_by(:code => params[:coupon])
+      @message = "Code Valid"
+       @percent = @coupon.discount_of/100
+       @intermediate_total = @total * @percent
+       @final_total = @total - @intermediate_total
+    else
+      @message = "Code Invalid"
+    end
   end
 
 end

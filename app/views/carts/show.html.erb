@@ -22,26 +22,21 @@
 						<tr>
 							<% @cart_products.each do |product,v|%>
 							<td class="cart_product">
-								 <%# @cart_products.each do |k,v|%>
-								<a href="#">
+								 
 									<% if product.product_images.count > 0 %> 
 									<%= image_tag(product.product_images.first.image.url ) %>
 									<% else %>
 									<%= image_tag("home/gallery3.jpg", alt: "") %>
-									<% end %>
-									<!-- <img src="images/cart/one.png" alt=""></a> -->
+									<% end %>									
 							</td>
 							<td class="cart_description">
-								<h4><%= link_to product.name%></h4>
-								<!-- <p>Web ID: 1089772</p> -->
+								<h4><%= link_to product.name%></h4>							
 							</td>
 							<td class="cart_price">
-								<%= product.price %>
-								<!-- <p>$59</p> -->
+								<%= product.price %>							
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
-									<!-- <a class="cart_quantity_up" href=""> + </a> -->
 									<%= link_to "+",user_carts_add_path(:product_id => product), :class=>"cart_quantity_up"%>
 
 									<input class="cart_quantity_input" type="text" name="quantity" value=<%= v[:quantity]%> autocomplete="off" size="2">
@@ -58,11 +53,12 @@
 							<td class="cart_delete">
 								<%= link_to '<i class="fa fa-times"></i>'.html_safe,user_carts_remove_path(:product_id => product), :class=>"cart_quantity_delete",
 								method: :delete,
-              data: { confirm: 'Are you sure?' } %></td>
+              data: { confirm: 'Are you sure?' } %>
+            </td>
 									
 
 								<!-- <a class="cart_quantity_delete" href=""><i class="fa fa-times"></i></a> -->
-							</td>
+							
 						</tr>						
 					</tbody>
 					<% end %>
