@@ -20,6 +20,7 @@ Rails.application.routes.draw do
 
   resources :carts
   post'/user_carts/apply_coupon', to: 'carts#apply_coupon'
+  get'/user_carts/remove_coupon', to: 'carts#remove_coupon'
   get '/user_carts', to: 'carts#show'
   get '/user_carts_add', to: 'carts#add_product'
   get '/user_carts_reduce', to: 'carts#reduce_product'
@@ -27,9 +28,9 @@ Rails.application.routes.draw do
   delete'/user_carts_remove', to: 'carts#remove_product'
 
 
-  get "/404", :to => "errors#not_found"
-  get "/422", :to => "errors#unacceptable"
-  get "/500", :to => "errors#internal_error"
+  # get "/404", :to => "errors#not_found"
+  # get "/422", :to => "errors#unacceptable"
+  # get "/500", :to => "errors#internal_error"
 
   #get '/addresses', to: 'addresses#index'
 

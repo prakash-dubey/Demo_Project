@@ -154,38 +154,9 @@
             		data: { confirm: 'Are you sure?' } %>
             </td>
 					</tr>	
-						<% end %>		
-					<tr>
-						<td colspan="4">				
-								<div id ="check_coupon_availability"></div>
-							<%= form_tag('/user_carts/apply_coupon', remote: true) do %>
-								<label>Apply Coupon:</label><br>
-								<input type="text" name="coupon" placeholder="Apply Coupon"><br>
-								<%= button_tag 'Apply', {class:'btn btn-primary'}%>
-								<!-- <button class="btn btn-primary">Submit</button> -->
-							<% end %>
-						</td>
-
-						<td colspan="2">
-							<table class="table table-condensed total-result">
-								<tr>
-									<td>Cart Sub Total</td>
-									<td><%= @total %></td>
-								</tdr>
-								<tr>
-									<td>Eco Tax</td>
-									<td></td>
-								</tr>
-								<tr class="shipping-cost">
-									<td>Shipping Cost</td>
-									<td>Free</td>										
-								</tr>
-								<tr>
-									<td>Total</td>
-									<td><span id="ajax"><%= @total %></span></td>
-								</tr>
-							</table>
-						</td>
+						<% end %>
+					<tr id="coupon_and_total">	
+					<%= render 'coupon_total'%>
 					</tr>	
 
 				</tbody>

@@ -47,7 +47,7 @@ Rails.application.configure do
   # Checks for improperly declared sprockets dependencies.
   # Raises helpful error messages.
   config.assets.raise_runtime_errors = true
-  config.consider_all_requests_local = false
+  #config.consider_all_requests_local = false
 
 
   # Raises error for missing translations

@@ -1,5 +1,9 @@
 // 	alert('hi');
 // $("#ajax").html(2);	
 
-$("#check_coupon_availability").html("<%= @message %>")
-$("#ajax").html(<%= @final_total%>);
+$("#coupon_and_total").html("<%=escape_javascript(render 'coupon_total')%>")
+$("#check_coupon_validity").html("<%= @message %>")
+$("#check_coupon_validity").html("<%= @message %>")
+$("#ajax").html("<%= @final_total%>");
+
+

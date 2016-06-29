@@ -1,0 +1,28 @@
+
+
+<td colspan="2">				
+	<form action="/user_carts/apply_coupon" accept-charset="UTF-8" data-remote="true" method="post"><input name="utf8" type="hidden" value="✓">
+	<label>Apply Coupon:</label><br>
+	<input type="text" name="coupon" placeholder="Apply Coupon"><br>
+	<button name="button" type="submit" class="btn btn-primary">Apply</button>
+	<!-- <button class="btn btn-primary">Submit</button> -->
+	</form>
+	<div id="check_coupon_validity">
+	</div>
+</td>
+
+<td colspan="2">
+	<div id="check_coupon_validity">
+		<% if session[:coupon].present? %>
+		<ul>
+		<li><%= link_to 'Remove Coupon', user_carts_remove_coupon_path,:class=>"btn btn-primary remove-coupon #{'hide' unless session[:coupon_id].present?}", remote: true %></li>
+		<li class='coupon-message'><%=@message %></li>
+		</ul>
+		<% end %> 	
+	</div>
+</td>
+
+<td id="remove_coupon" colspan="2">
+<%= render 'final_total'%>
+</td>
+

@@ -20,7 +20,7 @@ class CartsController < ApplicationController
 
   def new
     add_product_to_cart
-    redirect_to root_path
+    #redirect_to root_path
   end
 
   def add_product_to_cart
@@ -35,7 +35,7 @@ class CartsController < ApplicationController
 
 
   def reduce_product
-  	#binding.pry
+  
   	@session = session[:product_id]
   	session[:product_id].delete_at( @session.index(params[:product_id] ))
     flash[:success] = 'Product was successfully removed.'
@@ -71,16 +71,25 @@ class CartsController < ApplicationController
 
   def apply_coupon
     calculate_total
-    #binding.pry
      if Coupon.exists?(:code => params[:coupon])
       @coupon = Coupon.find_by(:code => params[:coupon])
-      @message = "Code Valid"
-       @percent = @coupon.discount_of/100
-       @intermediate_total = @total * @percent
-       @final_total = @total - @intermediate_total
+       @message = "#{@coupon.code} applied"  
+      @percent = @coupon.discount_of/100
+      @intermediate_total = @total * @percent
+      @final_total = @total - @intermediate_total
+      @discount_amount = @total - @final_total
+      # session[:coupon_id] = params[:coupon]
+      # session[:discount_of] =params[:coupon]
+      session[:coupon] = @coupon
     else
-      @message = "Code Invalid"
+      @message = "Not Valid"  
     end
+  end
+
+  def remove_coupon
+    session[:coupon] = ""
+    calculate_total
+    #redirect_to user_carts_checkout_path
   end
 
 end

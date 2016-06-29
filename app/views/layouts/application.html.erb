@@ -29,7 +29,7 @@
   </head>
   <body>
     <%#= link_to 'logout', destroy_admin_session_path, method: :delete %>
-    <%= render 'layouts/header' %>
+    <div id="update_cart_count"><%= render 'layouts/header' %></div>
   <% flash.each do |name, msg| %>
     <%= content_tag :div, msg, class: "alert alert-info" %>
   <% end %>
