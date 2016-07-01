@@ -7,7 +7,9 @@
 	<button name="button" type="submit" class="btn btn-primary">Apply</button>
 	<!-- <button class="btn btn-primary">Submit</button> -->
 	</form>
-	<div id="check_coupon_validity">
+	<div id="check_coupon_validity1">
+	<% if session[:coupon].present? %>
+	<% end %>
 	</div>
 </td>
 
@@ -15,7 +17,7 @@
 	<div id="check_coupon_validity">
 		<% if session[:coupon].present? %>
 		<ul>
-		<li><%= link_to 'Remove Coupon', user_carts_remove_coupon_path,:class=>"btn btn-primary remove-coupon #{'hide' unless session[:coupon_id].present?}", remote: true %></li>
+		<li><%= link_to 'Remove Coupon', user_carts_remove_coupon_path,:class=>"btn btn-primary remove-coupon", remote: true %></li>
 		<li class='coupon-message'><%=@message %></li>
 		</ul>
 		<% end %> 	

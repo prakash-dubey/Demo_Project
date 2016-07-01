@@ -1,2 +1,4 @@
-$(".remove-coupon").addClass('hide');
-$('.coupon-message').html("")
+
+$("#remove_coupon").html("<%=escape_javascript(render 'final_total')%>");
+$(".remove-coupon").hide();
+$('.coupon-message').html("");

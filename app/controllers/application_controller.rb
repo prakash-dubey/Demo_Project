@@ -6,22 +6,20 @@ class ApplicationController < ActionController::Base
   before_filter :set_parent_categories
 
   def set_parent_categories
-  	@categories = Category.where(parent_id: nil)
+  	  @categories = Category.where(parent_id: nil)
   end
-    before_filter :set_cart_for_checkout, :only =>[:show,:checkout]
+      before_filter :set_cart_for_checkout, :only =>[:show,:checkout]
 
 	def set_cart_for_checkout
-	  @quantities = {}
+	    @quantities = {}
 	    @uniq_prods = session[:product_id].uniq
 	    @uniq_prods.each do |i| 
-	      @quantities[i] =  session[:product_id].count(i) 
-
+	    @quantities[i] =  session[:product_id].count(i)
 	    end
 	    @cart_products = {}
 	    @quantities.each do |k,v|
-
-	      product=Product.find(k)
-	      @cart_products[product]={"quantity": v,"total_price": v * product.price}
+      product=Product.find(k)
+      @cart_products[product]={"quantity": v,"total_price": v * product.price}
 	    end
 	    @total=0
 	end

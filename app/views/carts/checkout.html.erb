@@ -117,8 +117,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr>
 						<% @cart_products.each do |product,v|%>
+					<tr id="reduce_product_<%= product.id%>">
 						<td class="cart_product">
 							 
 								<% if product.product_images.count > 0 %> 
@@ -135,14 +135,15 @@
 						</td>
 						<td class="cart_quantity">
 							<div class="cart_quantity_button">
-								<%= link_to "+",user_carts_add_path(:product_id => product), :class=>"cart_quantity_up"%>
+								<%= link_to "+",user_carts_add_path(:product_id => product), :class=>"cart_quantity_up", remote: true%>
 
-								<input class="cart_quantity_input" type="text" name="quantity" value=<%= v[:quantity]%> autocomplete="off" size="2">
+								<input class="cart_quantity_input product_<%=product.id%>" type="text" name="quantity" value=<%= v[:quantity]%> autocomplete="off" size="2">
+
 								<!-- <a class="cart_quantity_down" href=""> - </a> -->
-								<%= link_to "-",user_carts_reduce_path(:product_id => product), :class=>"cart_quantity_down"%>									
+								<%= link_to "-",user_carts_reduce_path(:product_id => product), :class=>"cart_quantity_down", remote: true%>									
 							</div>
 						</td>
-						<td class="cart_total">
+						<td class="cart_total_product_<%=product.id%>">
 							<%= v[:total_price]%>
 							<%# @total=@total +  v[:total_price]%>
 							
