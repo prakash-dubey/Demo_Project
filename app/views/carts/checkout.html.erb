@@ -158,9 +158,11 @@
 						<% end %>
 					<tr id="coupon_and_total">	
 					<%= render 'coupon_total'%>
-					</tr>	
-
+					</tr>
 				</tbody>
-			</table>
+			</table>			
+		</div>
+		<div class="pull-right">			
+				<%= link_to "Make a Payment", addresses_path, :class=>"btn btn-default check_out"%></div>
 		</div>
 </section> <!--/#cart_items-->

@@ -1,9 +1,11 @@
 <%= link_to 'New Address', new_address_path %><br><br>
 
 <div class="row">
-  <% @addresses.each do |address|%>
+  <%= form_tag('/orders', { class: 'test', :onSubmit => 'return validateAddress();'}) do  %>  
+  <% @addresses.each do |address|%>  
   <div class="col-sm-4">
       <div class="panel panel-info">
+        <%#= hidden_field_tag :address_id, address.id %>
         <div class="panel-heading"><%= address.name %></div>
         <div class="panel-body"><%= address.address_1 %></div>
         <div class="panel-body"><%= address.address_2 %></div>
@@ -15,10 +17,19 @@
         <%= link_to '<i class="fa fa-trash-o"></i>Destroy'.html_safe, address_path(address),
                 method: :delete,
                 data: { confirm: 'Are you sure?' },:class=>"pull-right" %></div>
-      </div>  
-  </div>  
+      </div>
+      <ul>  
+      <li><%= check_box_tag 'billing', address.id, false, class: "billing" %> Billing Address</li>
+      <li><%= check_box_tag 'Shipping', address.id, false, class: "shipping" %> Shipping Address</li> 
+      </ul>
+  </div>
+  <% end %>
+      <div class="pull-right">      
+              <%= submit_tag "Confirm Address", class: "btn btn-primary" %>
+      </div>
   <% end %>
 </div>
+
 
 
 

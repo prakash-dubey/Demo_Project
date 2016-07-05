@@ -9,8 +9,8 @@ Rails.application.routes.draw do
    root 'home#index'
    get '/login', to: 'home#login'
   resources :addresses
-  
-   resources :categories do  
+  resources :orders 
+  resources :categories do  
     resources :subcategories 
   end
 
@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   get '/user_carts_reduce', to: 'carts#reduce_product'
   get '/user_carts_checkout', to: 'carts#checkout'
   delete'/user_carts_remove', to: 'carts#remove_product'
+
 
 
   # get "/404", :to => "errors#not_found"
