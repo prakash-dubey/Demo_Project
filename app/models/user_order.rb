@@ -3,7 +3,5 @@ class UserOrder < ActiveRecord::Base
   belongs_to :billing_address, :class_name=>'Address'
   belongs_to :shipping_address, :class_name=>'Address'
   belongs_to :coupon
-  belongs_to :order
-  
-  # has_many :coupon, :dependent => :destroy
+  belongs_to :order  
 end

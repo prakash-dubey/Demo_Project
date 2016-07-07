@@ -54,14 +54,13 @@
 		</div>
 		<div "col-sm-4">
 			<div class="panel panel-info">
-				<h4>Billing Address</h4>
-				<div class="panel-body"><%= @user_order.billing_address.address.name %></div>
-        <div class="panel-body"><%= @user_order.billing_address.address.address_1 %></div>
-        <div class="panel-body"><%= @user_order.billing_address.address.address_2 %></div>
-        <div class="panel-body"><%= @user_order.billing_address.address.city %></div>
-        <div class="panel-body"><%= @user_order.billing_address.address.country %></div>
-        <div class="panel-body"><%= @user_order.billing_address.address.state %></div>
-        <div class="panel-body"><%= @user_order.billing_address.address.zipcode %></div>
+				<h4>Billing Address</h4>				
+        <div class="panel-body"><%= @user_order.billing_address.address_1 %></div>
+        <div class="panel-body"><%= @user_order.billing_address.address_2 %></div>
+        <div class="panel-body"><%= @user_order.billing_address.city %></div>
+        <div class="panel-body"><%= @user_order.billing_address.country %></div>
+        <div class="panel-body"><%= @user_order.billing_address.state %></div>
+        <div class="panel-body"><%= @user_order.billing_address.zipcode %></div>
 			</div>
 		</div>
 	</div>
