@@ -77,8 +77,20 @@
 			</div>
 			<%= link_to "Back", addresses_path%>
 		</div>
-		<div class="pull-right">			
-				<%= link_to "Payment", root_path, :class=>"btn btn-default check_out"%></div>	
+		<div class="container">
+			<div class="pull-left">
+				<% if session[:coupon].present? %>
+				<%= "Coupon applied" %>
+				<%= session[:coupon]["code"] %>
+				<% end %>
+			</div>
+			<div class="pull-right">
+					Total amount due: 
+					<%= @user_order.total_amount %>
+			</div>
+			<div class="pull-right">			
+					<%= link_to "Payment", root_path, :class=>"btn btn-default check_out"%></div>	
+			</div>
 		</div>		
 </section>
 		

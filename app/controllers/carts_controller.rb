@@ -20,7 +20,7 @@ class CartsController < ApplicationController
 
   def new
     add_product_to_cart
-    redirect_to root_path
+    #redirect_to root_path
   end
 
   def add_product_to_cart
@@ -34,7 +34,7 @@ class CartsController < ApplicationController
     calculate_total
     @product = Product.find(params[:product_id])
     @total_price = @cart_products[@product][:total_price].to_i
-    redirect_to user_carts_path    
+    #redirect_to user_carts_path    
   end
 
 
@@ -48,13 +48,13 @@ class CartsController < ApplicationController
     @session = session[:product_id]
     session[:product_id].delete_at( @session.index(params[:product_id] ))
     flash[:success] = 'Product was successfully removed.'
-    redirect_to user_carts_path    
+    #redirect_to user_carts_path    
   end
 
   def remove_product
     session[:product_id].delete(params[:product_id])
     flash[:success] = 'Product was successfully removed.'  
-    redirect_to user_carts_path
+    #redirect_to user_carts_path
   end
 
   def checkout

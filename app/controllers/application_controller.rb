@@ -17,10 +17,14 @@ class ApplicationController < ActionController::Base
 	    @quantities[i] =  session[:product_id].count(i)
 	    end
 	    @cart_products = {}
+	    @total=0
 	    @quantities.each do |k,v|
       product=Product.find(k)
+      total_price = v * product.price
       @cart_products[product]={"quantity": v,"total_price": v * product.price}
+      @total += total_price
 	    end
-	    @total=0
 	end
 end
+
+ 

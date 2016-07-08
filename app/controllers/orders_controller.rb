@@ -26,10 +26,9 @@ class OrdersController < ApplicationController
     		end
     	@user_order = UserOrder.find_by(order:@order,user_id:current_user.id)
     	if @user_order
-    		#binding.pry
     	@billing_address = Address.find(params[:billing])		
 			@shipping_address = Address.find(params[:Shipping])
-			@coupon_id = session[:coupon].present? ? session[:coupon].id : nil
+			@coupon_id = session[:coupon].present? ? session[:coupon][:id] : nil
 			@user_order.billing_address = @billing_address
 			@user_order.shipping_address = @shipping_address
 			@user_order.total_amount = @total
@@ -39,7 +38,7 @@ class OrdersController < ApplicationController
 
 			@used_coupon = UsedCoupon.find_by(order_id:@order)
 			if @used_coupon
-			@used_coupon.coupon_id = @coupon_id 
+			@used_coupon.coupon_id = @coupon_id
 			@used_coupon.save
 			end
 
@@ -53,9 +52,19 @@ class OrdersController < ApplicationController
 		end		
 		@billing_address = Address.find(params[:billing])		
 		@shipping_address = Address.find(params[:Shipping])
-		@coupon_id = session[:coupon].present? ? session[:coupon].id : nil
+		#binding.pry
+		if session[:coupon].present?
+			@coupon = Coupon.find_by_id(session[:coupon][:id])
+			@total_amount = @order.calculate_final_total(@coupon,@total)
+		else
+			@total_amount = @total
+		end
+		# @coupon_id = session[:coupon].present? ? session[:coupon][:id] : nil
+		# @coupon = Coupon.find_by_id(@coupon_id)
+		# #binding.pry
+		# @total_amount = @order.calculate_final_total(@coupon,@total)
 
-		@user_order = UserOrder.create( user_id:current_user.id, order:@order, billing_address:@billing_address, shipping_address:@shipping_address, total_amount:@total, coupon_id:@coupon_id )
+		@user_order = UserOrder.create( user_id:current_user.id, order:@order, billing_address:@billing_address, shipping_address:@shipping_address, total_amount:@total_amount, coupon_id:@coupon_id )
     session[:order_id] = @order.id
 
     if @coupon_code
