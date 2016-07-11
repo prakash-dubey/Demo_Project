@@ -89,7 +89,7 @@
 					<%= @user_order.total_amount %>
 			</div>
 			<div class="pull-right">			
-					<%= link_to "Payment", root_path, :class=>"btn btn-default check_out"%></div>	
+					<%= link_to "Payment", new_charge_path(:user_order => @user_order), :class=>"btn btn-default check_out" %></div>	
 			</div>
 		</div>		
 </section>

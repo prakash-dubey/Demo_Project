@@ -14,6 +14,9 @@ Rails.application.routes.draw do
     resources :subcategories 
   end
 
+  resources :charges
+  resources :wishlists
+  
   resources :carts
   post'/user_carts/apply_coupon', to: 'carts#apply_coupon'
   get'/user_carts/remove_coupon', to: 'carts#remove_coupon'
