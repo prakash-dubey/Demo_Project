@@ -17,7 +17,8 @@ Rails.application.routes.draw do
   resources :charges
   resources :wishlists
   
-  resources :carts
+  #get '/user_wishlists', to: 'wishlists#show'
+
   post'/user_carts/apply_coupon', to: 'carts#apply_coupon'
   get'/user_carts/remove_coupon', to: 'carts#remove_coupon'
   get '/user_carts', to: 'carts#show'
@@ -25,6 +26,7 @@ Rails.application.routes.draw do
   get '/user_carts_reduce', to: 'carts#reduce_product'
   get '/user_carts_checkout', to: 'carts#checkout'
   delete'/user_carts_remove', to: 'carts#remove_product'
+  resources :carts
 
 
 
