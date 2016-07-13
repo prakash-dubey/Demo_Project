@@ -48,13 +48,13 @@ class CartsController < ApplicationController
     @session = session[:product_id]
     session[:product_id].delete_at( @session.index(params[:product_id] ))
     flash[:success] = 'Product was successfully removed.'
-    #redirect_to user_carts_path    
+    #redirect_to user_carts_path
   end
 
   def remove_product
     session[:product_id].delete(params[:product_id])
     flash[:success] = 'Product was successfully removed.'  
-    #redirect_to user_carts_path
+    redirect_to user_carts_path
   end
 
   def checkout
@@ -86,9 +86,7 @@ class CartsController < ApplicationController
     @intermediate_total = @total * @percent
     @final_total = @total - @intermediate_total
     @discount_amount = @total - @final_total
-    session[:coupon] = @coupon
-      # session[:coupon_id] = params[:coupon]
-      # session[:discount_of] =params[:coupon]
+    session[:coupon] = @coupon      
     else
       @message = "Not Valid"  
     end
@@ -99,7 +97,6 @@ class CartsController < ApplicationController
     calculate_total
     redirect_to user_carts_checkout_path
   end
-
 end
 
 

@@ -1,7 +1,3 @@
-<%#@wishlists.each do |wishlist|%>
-<%#= wishlist.product.name %>
-<%#end%>
-
 <section id="cart_items">
 		<div class="container">
 			<div class="breadcrumbs">
@@ -19,8 +15,7 @@
 							<td class="price">Price</td>
 							<td class="quantity">Remove</td>
 							<td></td>
-							<!-- <td class="total"></td> -->
-							
+							<!-- <td class="total"></td> -->							
 						</tr>
 					</thead>
 					<tbody>
@@ -50,8 +45,7 @@
 							</td>
 							<td>
 								<%= link_to "Add to Cart", addresses_path, :class => "btn btn-default check_out"%>
-							</td>
-						
+							</td>						
 						</tr>						
 					</tbody>					
 					<% end %>
