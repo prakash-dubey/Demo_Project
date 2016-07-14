@@ -44,7 +44,7 @@
 									<%= link_to "-",user_carts_reduce_path(:product_id => product), :class=>"cart_quantity_down", remote: true %>									
 								</div>
 							</td>
-							<td class="cart_total">
+							<td class="cart_total_product_<%=product.id%>">
 								<%= v[:total_price]%>
 								<% @total=@total +  v[:total_price]%>
 								

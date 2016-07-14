@@ -1,10 +1,13 @@
-
 $(".product_<%= params[:product_id] %>").val("<%= @count %>");
+
 $(".cart_total_product_<%= params[:product_id] %>").html("<%=@total_price%>");
-$("#add_to_cart").html("<%=(session[:product_id].count)%>");
+
+$("#add_to_cart").html("[<%= (session[:product_id].count)%>]");
+
 $("#coupon_and_total").html("<%=escape_javascript(render 'coupon_total')%>")
+
 $("#check_coupon_validity1").html("<%= @message %>")
+
 $("#ajax").text("<%= @total%>");
+
 $("#remove_coupon").html("<%=escape_javascript(render 'final_total')%>")
-
-

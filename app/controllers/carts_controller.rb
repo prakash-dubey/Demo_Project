@@ -78,26 +78,27 @@ class CartsController < ApplicationController
   end
 
   def apply_coupon
-    calculate_total
-    if Coupon.exists?(:code => params[:coupon])
-    @coupon = Coupon.find_by(:code => params[:coupon])
-    @message = "#{@coupon.code} applied"  
-    @percent = @coupon.discount_of/100
-    @intermediate_total = @total * @percent
-    @final_total = @total - @intermediate_total
-    @discount_amount = @total - @final_total
-    session[:coupon] = @coupon      
+    if params[:coupon].present?
+      calculate_total
+      if Coupon.exists?(:code => params[:coupon])
+        @coupon = Coupon.find_by(:code => params[:coupon])
+        @message = "#{@coupon.code} applied"  
+        @percent = @coupon.discount_of/100
+        @intermediate_total = @total * @percent
+        @final_total = @total - @intermediate_total
+        @discount_amount = @total - @final_total
+        session[:coupon] = @coupon      
+      else
+        @message = "Not Valid"
+      end
     else
-      @message = "Not Valid"  
+      @message = "Please enter coupon"
     end
   end
 
   def remove_coupon
     session[:coupon] = ""
     calculate_total
-    redirect_to user_carts_checkout_path
+    #redirect_to user_carts_checkout_path
   end
 end
-
-
-

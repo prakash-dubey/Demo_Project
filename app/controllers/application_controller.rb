@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
 	    @quantities.each do |k,v|
       product=Product.find(k)
       total_price = v * product.price
-      @cart_products[product]={"quantity": v,"total_price": v * product.price}
+      @cart_products[product]={"quantity": v,"total_price": total_price}
       @total += total_price
 	    end
 	end
