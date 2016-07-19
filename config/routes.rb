@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  devise_for :users
+  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   # The priority is based upon order of creation: first created -> highest priority.
@@ -10,8 +10,8 @@ Rails.application.routes.draw do
    get '/login', to: 'home#login'
   resources :addresses
   resources :orders 
-  resources :categories do  
-    resources :subcategories 
+  resources :categories do
+    resources :subcategories
   end
 
   resources :charges
@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   delete'/user_carts_remove', to: 'carts#remove_product'
   resources :carts
 
+#   devise_scope :user do
+#   delete 'sign_out', :to => 'devise/sessions#destroy', :as => :destroy_user_session
+# end
 
 
   # get "/404", :to => "errors#not_found"

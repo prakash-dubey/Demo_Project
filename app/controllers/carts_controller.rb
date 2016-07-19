@@ -6,13 +6,13 @@ class CartsController < ApplicationController
     @quantities = {}
     @uniq_prods = session[:product_id].uniq
     @uniq_prods.each do |i| 
-      @quantities[i] =  session[:product_id].count(i) 
+      @quantities[i] =  session[:product_id].count(i)
 
     end
     @cart_products = {}
     @quantities.each do |k,v|
-    product=Product.find(k)
-    @cart_products[product]={"quantity": v,"total_price": v * product.price}
+      product=Product.find(k)
+      @cart_products[product]={"quantity": v,"total_price": v * product.price}
     end
     @total=0
 
@@ -26,10 +26,14 @@ class CartsController < ApplicationController
   def add_product_to_cart
     session[:product_id] << params["product_id"]
     flash[:success] = 'Product was successfully added.'
+    respond_to do |format|
+      format.html { redirect_to :root_path  }
+      format.js 
+    end
   end
 
   def add_product
-    add_product_to_cart    
+    add_product_to_cart
     @count = session[:product_id].count(params[:product_id])
     calculate_total
     @product = Product.find(params[:product_id])
@@ -38,8 +42,8 @@ class CartsController < ApplicationController
   end
 
 
-  def reduce_product  
-    calculate_total
+  def reduce_product
+      calculate_total
     @count = session[:product_id].count(params[:product_id])
     @product = Product.find(params[:product_id])
     if @cart_products[@product]
@@ -64,7 +68,7 @@ class CartsController < ApplicationController
   def calculate_total
     @quantities = {}
     @uniq_prods = session[:product_id].uniq
-    @uniq_prods.each do |i| 
+    @uniq_prods.each do |i|
     @quantities[i] =  session[:product_id].count(i)
     end
     @cart_products = {}

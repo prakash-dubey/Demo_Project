@@ -2,8 +2,8 @@ class OrdersController < ApplicationController
 	before_filter :set_cart_for_checkout
 
 	def index
-		@user_order = UserOrder.where(user_id:current_user.id).first
-		@order_details = @user_order.order.order_details		
+		@user_order = current_user.user_orders
+		#@order_details = @user_order.order.order_details		
 	end
 
 	def show
@@ -17,29 +17,30 @@ class OrdersController < ApplicationController
 
 	def create
 		 if session[:order_id].present?
+		 	binding.pry
       @order = Order.find(session[:order_id])
-    	@cart_products.each do |product, value|		
-    		#binding.pry
+    	@cart_products.each do |product, value|    		
 	    	@order_details = OrderDetail.find_or_initialize_by(product:product,order:@order)
 	    	@order_details.quantity = value[:quantity]
 	    	@order_details.amount = value[:total_price]
 	    	@order_details.save	  
     		end
     	@user_order = UserOrder.find_by(order:@order,user_id:current_user.id)
+
     	if @user_order
-	    	@billing_address = Address.find(params[:billing])		
-				@shipping_address = Address.find(params[:Shipping])
-				@coupon_id = session[:coupon].present? ? session[:coupon]["id"] : nil
-				@user_order.billing_address = @billing_address
-				@user_order.shipping_address = @shipping_address 
-				@user_order.total_amount = @total  
-				@user_order.coupon_id = @coupon_id 
-				@user_order.save
+    		@billing_address = Address.find(params[:billing])		
+			@shipping_address = Address.find(params[:Shipping])
+			@coupon_id = session[:coupon].present? ? session[:coupon]["id"] : nil
+			@user_order.billing_address = @billing_address
+			@user_order.shipping_address = @shipping_address 
+			@user_order.total_amount = @total  
+			@user_order.coupon_id = @coupon_id 
+			@user_order.save
 			end
 
 			@used_coupon = UsedCoupon.find_by(order_id:@order)
 			if @used_coupon
-				@used_coupon.coupon_id = @coupon_id 
+				@used_coupon.coupon_id = @coupon_id
 				@used_coupon.save
 			end
 

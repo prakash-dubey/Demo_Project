@@ -9,6 +9,7 @@ class WishlistsController < ApplicationController
 
 	def index
 		@wishlists = current_user.wishlists
+		flash[:success] = 'You are in Wishlist Section.'
 	end
 
 	def destroy	

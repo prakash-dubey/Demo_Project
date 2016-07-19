@@ -25,6 +25,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'will_paginate', '~> 3.1.0'
 gem 'stripe'
+gem 'omniauth-facebook'
+gem 'omniauth-twitter'
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
@@ -52,6 +54,6 @@ group :development do
   gem "pry"
   gem 'kaminari'
 
-gem 'omniauth-facebook'
+
 end
 

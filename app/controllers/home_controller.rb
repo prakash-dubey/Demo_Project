@@ -4,7 +4,7 @@
   	@products = Product.all 
   	@banners = Banner.all
   	@products = Product.paginate(:page => params[:page], :per_page => 2)
-  	session[:product_id] ||= []	
+  	session[:product_id] ||= []
   end
 
   def login

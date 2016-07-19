@@ -8,7 +8,7 @@
 					<%= image_tag("home/gallery3.jpg", alt: "") %>
 					<% end %>
 						<ul>
-					<li><%= product.price %></li>
+					<li>Rs.<%= product.price %></li>
 					<li><%= product.name %></li>
 						</ul>	
 					<a href="#" class="btn btn-default add-to-cart"><i class="fa fa-shopping-cart"></i>Add to cart</a>
@@ -16,7 +16,7 @@
 				<div class="product-overlay">
 					<div class="overlay-content">
 						<ul>
-					<li><%= product.price %></li>
+					<li>Rs.<%= product.price %></li>
 					<li><%= product.name %></li>
 						</ul>
 						  <%= link_to '<i class="fa fa-shopping-cart"></i>Add to cart'.html_safe, new_cart_path(:product_id => product),:class => "btn btn-default add-to-cart", remote:true, method: :get %>

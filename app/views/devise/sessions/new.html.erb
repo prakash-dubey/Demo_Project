@@ -9,9 +9,13 @@
              <!--  <input type="text" placeholder="Name" />
               <input type="email" placeholder="Email Address" /> -->
               <%= f.submit "Login", class: 'btn btn-default' %>
+            <%= link_to "Sign in with Facebook", user_omniauth_authorize_path(:facebook) %> <br>
+            <%#= link_to "Sign in with Twitter", user_omniauth_authorize_path(:twitter) %>
             <% end %>
           </div>
         </div >
+        <div>
+        </div>
      
     <div class="col-sm-1">
     <h2 class="or">OR</h2>

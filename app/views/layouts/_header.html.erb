@@ -62,7 +62,7 @@
 							<li><a href="#"><i class="fa fa-user"></i> Account</a></li>
 							<!-- <li><a href="#"><i class="fa fa-star"></i> Wishlist</a></li> -->
 							<li><%= link_to '<i class="fa fa-star"></i> Wishlist'.html_safe, wishlists_path %></li>
-							<li><a href="#"><i class="fa fa-crosshairs"></i> Checkout</a></li>
+							<li><%= link_to "My Orders", orders_path%></li>
 							<li><%= link_to '<i class="fa fa-shopping-cart"></i> Cart'"<span id='add_to_cart'>[#{(session[:product_id].count)}]</span>".html_safe, user_carts_path %><span><%=  %></span></li>				 
 							<li><% if user_signed_in? %>
 						        Logged in as <%= current_user.email %>.
@@ -103,7 +103,7 @@
 				          <ul role="menu" class="sub-menu">
 				              <li><a href="#">Products</a></li>
 											<li><a href="#">Product Details</a></li> 
-											<li><a href="#">Checkout</a></li> 
+											
 											<!-- <li><%= link_to '<i class="fa fa-shopping-cart"></i> Cart'.html_safe, user_carts_path %>
 											</li> -->
 											<li><%= link_to 'Cart', user_carts_path %>
@@ -116,7 +116,8 @@
 									<li><a href="#">Blog Single</a></li>
 				                          </ul>
 				                      </li> 
-							<li><a href="http://10.0.100.214:3000/404.html">404</a></li>
+				                       
+							<!-- <li><a href="http://10.0.100.214:3000/404.html">404</a></li> -->
 							<li><a href="#">Contact</a></li>
 						</ul>
 					</div>
