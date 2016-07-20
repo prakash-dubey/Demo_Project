@@ -11,7 +11,7 @@ class User < ActiveRecord::Base
   has_many :wishlists
 
   def self.from_omniauth(auth)
-    # Identity.joins(:user).where(provider: auth.provider, uid: auth.uid).where(users: {email: auth.info.email }).first_or_create 
+    # Identity.joins(:user).where(provider: auth.provider, uid: auth.uid).where(users: {email: auth.info.email }).first_or_create
       where(provider: auth.provider, uid: auth.uid).first_or_create do |user|
       user.email = auth.info.email
       user.password = Devise.friendly_token[0,20]

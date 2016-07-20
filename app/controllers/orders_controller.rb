@@ -17,7 +17,7 @@ class OrdersController < ApplicationController
 
 	def create
 		 if session[:order_id].present?
-		 	binding.pry
+		 	#binding.pry
       @order = Order.find(session[:order_id])
     	@cart_products.each do |product, value|    		
 	    	@order_details = OrderDetail.find_or_initialize_by(product:product,order:@order)

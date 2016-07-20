@@ -7,10 +7,10 @@ Devise.setup do |config|
   # Devise will use the `secret_key_base` as its `secret_key`
   # by default. You can change it below and use your own secret key.
   # config.secret_key = '2a3c8bc018a7b3360467366035043c8ce1b1035e835194d8aee52df8c4b00512343e4673634f120ab528ce7f64047b81b02480de82c78d94a5d3074bf4725bb4'
-  config.omniauth :facebook, "1699825043610947", "80321d0c0e391dec8a4e0b4f5b4d1934"
+  # config.omniauth :facebook, "1699825043610947", "80321d0c0e391dec8a4e0b4f5b4d1934"
 
-  config.omniauth :facebook, "1699825043610947", "80321d0c0e391dec8a4e0b4f5b4d1934",
-                callback_url: "localhost:3000"
+  # config.omniauth :facebook, "1699825043610947", "80321d0c0e391dec8a4e0b4f5b4d1934",
+  #               callback_url: "localhost:3000", ""
 
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in Devise::Mailer,
@@ -251,8 +251,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', scope: 'user,public_repo'
   
-  config.omniauth :facebook, "280907628937601", "c0a22400e70cec39c5eed6ca27631a7f", callback_url: ""
-  config.omniauth :twitter, "iTLCKAmHXgAKO2CDqt1eUFdMK", "KAFxvCJOweZlaDEazRzl76ORDHZS3rycf8eXdxjLFG5Ydynzz3", callback_url: ""
+  config.omniauth :facebook, "1058885474160532", "27aa6922e46e1dadca6afe9ad25e041b"
+  #config.omniauth :twitter, "iTLCKAmHXgAKO2CDqt1eUFdMK", "KAFxvCJOweZlaDEazRzl76ORDHZS3rycf8eXdxjLFG5Ydynzz3"
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

@@ -16,6 +16,8 @@ Rails.application.routes.draw do
 
   resources :charges
   resources :wishlists
+
+  resources :contacts
   
   #get '/user_wishlists', to: 'wishlists#show'
 
