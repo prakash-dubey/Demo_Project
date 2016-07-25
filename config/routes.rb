@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  get 'products/show'
+
+  get 'blogs/index'
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks" }
   devise_for :admins
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
@@ -18,6 +22,11 @@ Rails.application.routes.draw do
   resources :wishlists
 
   resources :contacts
+  resources :blogs
+  get'add_to_cart', to: 'products#add_to_cart'
+  resources :products
+
+
   
   #get '/user_wishlists', to: 'wishlists#show'
 

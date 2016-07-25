@@ -26,10 +26,10 @@ class CartsController < ApplicationController
   def add_product_to_cart
     session[:product_id] << params["product_id"]
     flash[:success] = 'Product was successfully added.'
-    respond_to do |format|
-      format.html { redirect_to :root_path  }
-      format.js 
-    end
+    # respond_to do |format|
+    #   format.html { redirect_to :root_path  }
+    #   format.js 
+    # end
   end
 
   def add_product
