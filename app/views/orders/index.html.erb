@@ -21,9 +21,9 @@
           <tbody>
             <% @user_order.each do |order| %>
                   <tr>
-                    <td><%= order.order_id %></td>
+                    <td><%= order.order.id %></td>
                     <td><%= order.created_at.strftime("%d %b %Y") %></td>
-                    <td><%= link_to "Show", order_path(order), :class=>"btn btn-default check_out" %></td>
+                    <td><%= link_to "Show", order_path(:id => order.order.id), :class=>"btn btn-default check_out" %></td>
                     <td></td>
                     <td><%= order.status %></td>
                   </tr>

@@ -1,6 +1,6 @@
 $(".product_<%= params[:product_id] %>").val("<%= @count %>");
 
-$(".cart_total_product_<%= params[:product_id] %>").html("<%=@total_price%>");
+$(".cart_total_product_<%= params[:product_id] %>").html("Rs.<%=@total_price%>");
 
 $("#add_to_cart").html("[<%= (session[:product_id].count)%>]");
 

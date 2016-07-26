@@ -1,11 +1,11 @@
 <table class="table table-condensed total-result">
 	<tbody><tr>
 		<td>Cart Sub Total</td>
-		<td><%= @total %></td>
+		<td>Rs.<%= @total %></td>
 	
 		</tr><tr>
 			<td>Discount amount</td>
-			<td><%= get_discount_amount %></td>
+			<td>Rs.<%= get_discount_amount %></td>
 
 		</tr>
 		<tr class="shipping-cost">
@@ -14,7 +14,7 @@
 		</tr>
 		<tr>
 			<td>Total</td>
-			<td><span id="ajax"><%= @total %></span></td>
+			<td><span id="ajax">Rs.<%= @total %></span></td>
 		</tr>
 	</tbody>
 </table>

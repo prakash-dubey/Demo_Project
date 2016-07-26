@@ -9,6 +9,14 @@ class OrdersController < ApplicationController
 	def show
 		@order = Order.find(params[:id])
 		@user_order = UserOrder.where(order_id:session[:order_id]).first
+		respond_to do |format|
+	      format.html
+	      format.pdf do
+        render pdf: "Invoice", :template => 'orders/show.pdf.erb',# Excluding ".pdf" extension.
+               disposition: 'attachment',
+               layout: "wicked_pdf"  # Excluding ".pdf" extension.
+      end
+    end
 	end
 
 	def new
@@ -16,26 +24,27 @@ class OrdersController < ApplicationController
 	end
 
 	def create
-		 if session[:order_id].present?
-		 	#binding.pry
+		if session[:order_id].present?	
+
       @order = Order.find(session[:order_id])
+
     	@cart_products.each do |product, value|    		
 	    	@order_details = OrderDetail.find_or_initialize_by(product:product,order:@order)
 	    	@order_details.quantity = value[:quantity]
 	    	@order_details.amount = value[:total_price]
 	    	@order_details.save	  
     		end
-    	@user_order = UserOrder.find_by(order:@order,user_id:current_user.id)
 
+    	@user_order = UserOrder.find_by(order:@order,user_id:current_user.id)
     	if @user_order
-    		@billing_address = Address.find(params[:billing])		
-			@shipping_address = Address.find(params[:Shipping])
-			@coupon_id = session[:coupon].present? ? session[:coupon]["id"] : nil
-			@user_order.billing_address = @billing_address
-			@user_order.shipping_address = @shipping_address 
-			@user_order.total_amount = @total  
-			@user_order.coupon_id = @coupon_id 
-			@user_order.save
+	    	@billing_address = Address.find(params[:billing])		
+				@shipping_address = Address.find(params[:Shipping])
+				@coupon_id = session[:coupon].present? ? session[:coupon]["id"] : nil
+				@user_order.billing_address = @billing_address
+				@user_order.shipping_address = @shipping_address 
+				@user_order.total_amount = @total  
+				@user_order.coupon_id = @coupon_id 
+				@user_order.save
 			end
 
 			@used_coupon = UsedCoupon.find_by(order_id:@order)
@@ -45,30 +54,34 @@ class OrdersController < ApplicationController
 			end
 
     else
-      @order = Order.create
+			@order = Order.create
+			@cart_products.each do |product, value|
+				@order_detail = OrderDetail.create(order:@order, product:product, 
+				quantity:value[:quantity], amount:value[:total_price])				
+			end
+			binding.pry	
+			@user_order = UserOrder.create( user_id:current_user.id, order:@order)
+			@billing_address = Address.find(params[:billing])		
+			@shipping_address = Address.find(params[:Shipping])
+			@coupon_code = session[:coupon].present? ? session[:coupon]["id"] : nil
+      @coupon =Coupon.find_by_id(@coupon_code)
+      @user_order.billing_address=@billing_address
+      @user_order.shipping_address=@shipping_address
+			if session[:coupon].present?
+				@coupon = Coupon.find_by_id(session[:coupon]["id"])
+				@total_amount = @order.calculate_final_total(@coupon,@total)
+			else
+				@total_amount = @total
+			end
+			@user_order.save
+
+			#@user_order = UserOrder.create( user_id:current_user.id, order:@order, billing_address:@billing_address, shipping_address:@shipping_address, total_amount:@total_amount, coupon_id:@coupon_id )
+	    session[:order_id] = @order.id
+
+	    if @coupon_code
+	    	@used_coupon = UsedCoupon.create( coupon_id:@coupon,user_id:current_user.id,order_id:@order )
+	    end
     end
-		@order = Order.create
-		@cart_products.each do |product, value|
-			@order_detail = OrderDetail.create(order:@order, product:product, 
-			quantity:value[:quantity], amount:value[:total_price])				
-		end		
-		@billing_address = Address.find(params[:billing])		
-		@shipping_address = Address.find(params[:Shipping])
-
-		if session[:coupon].present?
-			@coupon = Coupon.find_by_id(session[:coupon]["id"])
-			@total_amount = @order.calculate_final_total(@coupon,@total)
-		else
-			@total_amount = @total
-		end
-
-		@user_order = UserOrder.create( user_id:current_user.id, order:@order, billing_address:@billing_address, shipping_address:@shipping_address, total_amount:@total_amount, coupon_id:@coupon_id )
-    session[:order_id] = @order.id
-
-    if @coupon_code
-    	@used_coupon = UsedCoupon.create( coupon_id:@coupon,user_id:current_user.id,order_id:@order )
-    end
-
 		redirect_to order_path(@order)
 	end
 end

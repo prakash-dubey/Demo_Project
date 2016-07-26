@@ -33,7 +33,7 @@
 								<h4><%= link_to product.name%></h4>							
 							</td>
 							<td class="cart_price">
-								<%= product.price %>							
+								Rs.<%= product.price %>							
 							</td>
 							<td class="cart_quantity">
 								<div class="cart_quantity_button">
@@ -45,7 +45,7 @@
 								</div>
 							</td>
 							<td class="cart_total_product_<%=product.id%>">
-								<%= v[:total_price]%>
+								Rs.<%= v[:total_price]%>
 								<% @total=@total +  v[:total_price]%>
 								
 								<!-- <p class="cart_total_price">$59</p> -->

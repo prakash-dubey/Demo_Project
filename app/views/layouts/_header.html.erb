@@ -70,13 +70,13 @@
 						  <%= link_to "Logout", destroy_user_session_path, method: :delete, :class => 'navbar-link'  %></li>
 						<% else %>
 						  <%#= link_to "Sign up", new_user_registration_path, :class => 'navbar-link'  %> 
-						  <%= link_to new_user_session_path do %>
+						 <!--  <%= link_to new_user_session_path do %>
 						  	<i class="fa fa-lock"></i>Login
-						  <% end %>
+						  <% end %> -->
 
-						  
-						  
-						  
+						   <%= link_to new_user_session_path do %>
+						  	<i class="fa fa-lock"></i>Login
+						  <% end %>					  
 						<% end %></li>
 
 							<!-- <li><a href="login.html"> Login</a></li> -->
@@ -127,10 +127,10 @@
 					</div>
 				</div>
 				<div class="col-sm-3">
-					<div class="search_box pull-right">
+					<!-- <div class="search_box pull-right">
 						<input type="text" placeholder="Search"/>
 					</div>
-				</div>
+ -->				</div>
 				</div>
 				</div>
 				</div><!--/header-bottom-->
